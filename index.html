@@ -19,61 +19,6 @@ canvas {
   z-index: -1;
 }
 
-
-  <style>
-  .gatos {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    padding: 10px;
-    pointer-events: none;
-  }
-
-  .gato-container {
-    position: relative;
-  }
-
-  .gato {
-    width: 80px;
-    animation: dormir 3s infinite ease-in-out;
-  }
-
-  /* Zzz */
-  .zzz {
-    position: absolute;
-    bottom: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 14px;
-    opacity: 0;
-    animation: subirZ 3s infinite;
-  }
-
-  @keyframes subirZ {
-    0% {
-      transform: translate(-50%, 0);
-      opacity: 0;
-    }
-    30% {
-      opacity: 1;
-    }
-    100% {
-      transform: translate(-50%, -40px);
-      opacity: 0;
-    }
-  }
-</style>
-
-<div class="gatos">
-  <div class="gato-container">
-    <img class="gato" src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
-    <div class="zzz">Z</div>
-  </div>
-
 /* IMAGEM GIRANDO */
 .imagem-topo {
   position: fixed;
