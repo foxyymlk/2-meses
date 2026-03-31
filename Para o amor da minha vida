@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Para o amor da minha vida</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: rgb(6, 0, 34);
+  min-height: 500vh;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* IMAGEM GIRANDO */
+.imagem-topo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  z-index: 9;
+  animation: girarTopo 10s linear infinite;
+  filter: drop-shadow(0 0 15px rgba(255, 228, 138, 0.6));
+}
+
+@keyframes girarTopo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* PERSONAGEM */
+.personagem-container {
+  position: fixed;
+  bottom: -20px;
+  left: -120px;
+  z-index: 10;
+  transition: 0.5s;
+}
+
+.personagem { width: 260px; }
+
+.balao {
+  position: absolute;
+  bottom: 180px;
+  left: 140px;
+  background: rgb(186, 126, 255);
+  padding: 8px 14px;
+  border-radius: 15px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.emote {
+  position: absolute;
+  top: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.personagem-container:hover { left: 10px; }
+.personagem-container:hover .balao { opacity: 1; }
+.personagem-container:hover .emote { opacity: 1; }
+
+/* LUA */
+.lua-container {
+  position: fixed;
+  bottom: 250px;
+  right: 220px;
+  animation: flutuar 4s infinite;
+}
+
+.lua { width: 220px; }
+
+.gatos {
+  position: absolute;
+  width: 140px;
+  top: -30px;
+  left: 40px;
+}
+
+.coracao {
+  position: absolute;
+  top: -70px;
+  left: 90px;
+  font-size: 26px;
+  animation: subir 2s infinite;
+}
+
+@keyframes subir {
+  50% { transform: translateY(-20px) scale(1.2); }
+}
+
+@keyframes flutuar {
+  50% { transform: translateY(-25px); }
+}
+
+/* TELEPORT */
+.teleport {
+  position: fixed;
+  width: 120px;
+  z-index: 8;
+  opacity: 0;
+  transition: 0.6s;
+}
+
+/* CARTAS */
+.secao {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.carta {
+  position: relative;
+  background: rgba(196, 133, 255, 0.9);
+  width: 500px;
+  padding: 30px;
+  border-radius: 15px;
+  text-align:center;
+}
+
+.gatinhos-topo {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="galaxy"></canvas>
+
+<!-- IMAGEM GIRANDO -->
+<img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/56af1af7e15f8240a7f17246cf970d2e-Photoroom-imagetourl.cloud-1774921200009-nh1h83.png" class="imagem-topo">
+
+<!-- PERSONAGEM -->
+<div class="personagem-container">
+  <img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/36690634221b34522d84ce3fa4b1c3cd-removebg-preview--imagetourl.cloud-1774918582865-8v7hih.png" class="personagem">
+  <div class="balao">
+    oi...
+    <img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/0ebd945da984b2c7c722a6f4695add13-Photoroom-imagetourl.cloud-1774921209745-oafmln.png" class="emote">
+  </div>
+</div>
+
+<!-- LUA -->
+<div class="lua-container">
+  <img src="https://purepng.com/public/uploads/large/purepng.com-moonnaturelightnightmoon-961524672147abmbw.png" class="lua">
+  <img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/4a10507bf058a0df0a8fbd70e9107364--1--Photoroom-imagetourl.cloud-1774921187407-nxr7vu.png" class="gatos">
+  <div class="coracao">💖</div>
+</div>
+
+<!-- TELEPORT -->
+<img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/faf081001df538569581e6436b8e4687-Photoroom--1--imagetourl.cloud-1774921480473-duug0w.png" class="teleport">
+
+<!-- PLAYER YT -->
+<div id="playerYT" style="display:none;"></div>
+
+<!-- CARTAS -->
+<div class="secao"><div class="carta">
+<img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/0a4c58fba35ad5a9078c831fab5c2c47-removebg-preview--imagetourl.cloud-1774912059230-b2jthb.png" class="gatinhos-topo">
+<h1>💜 OI MEU AMOR 💜</h1><p>Hoje a gente tá fazendo dois meses juntos, e foram os melhores de toda minha vida sendo sincero. Não queria ser tão repetitivo em fazer outro site para você, até porque isso da um trabalho danado, madrugadas fazendo algo que te faça se sentir a pessoa mais amada do mundo. Sendo sincero, nunca fui com programação, mas se for pra fazer algo especial só pra você eu aprenderia até a coisa complicada do mundo. Tô enrolando demais né? quando tô escrevendo gosto de ouvir música, e essas músicas que tão tocando na playlist são as que eu mais gosto de ouvir enquanto escrevo, pensei em deixar uma playlist tocando de fundo no site, mas não consegui colocar(sou burro desculpa)</p>
+</div></div>
+
+
+<!-- CARTAS -->
+<div class="secao"><div class="carta">
+<img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/0a4c58fba35ad5a9078c831fab5c2c47-removebg-preview--imagetourl.cloud-1774912059230-b2jthb.png" class="gatinhos-topo">
+<h1>Tá querendo me ver escrevendo mais né?</h1><p>Bom, a partir daqui eu to sem ideia do que escrever, então só vou escrevendo o que vem na minha cabeça. Bom, não sei por onde começar, eu talvez escreveria o tanto que eu te amo, mas não consigo escrever tanto pra descrever o tamanho do meu amor. Perderia dia e noite aqui te elogiando e dizendo o quão importante você é pra minha vida, o tanto que eu te amo, o tanto que você mudou meu mundo, você é linda, inteligente, gentil, bondosa, carismática, carinhosa, perseverante, sorridente e eu te amo muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muito muuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuito mesmo</p>
+</div></div>
+
+
+<!-- CARTAS -->
+<div class="secao"><div class="carta">
+<img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/0a4c58fba35ad5a9078c831fab5c2c47-removebg-preview--imagetourl.cloud-1774912059230-b2jthb.png" class="gatinhos-topo">
+<h1>Eu te amo ❤️</h1><p>Sabia que eu já falei te amo pra você mais de 265 vezes desde que a gente começou a namorar? claro, tirando as vezes que a gente foi call, que aumentaria provavelmente pra umas 350 vezes que eu disse que te amava(meta é chegar a 1000) e já que eu tô sem nada pra fazer, vou escrever te amo em 100 linguas diferentes: Eu te amo (português)
+
+  I love you (Inglês)
+
+  Je t'aime (Francês)
+
+  Te amo (Espanhol)
+
+  Ich liebe dich (Alemão)
+
+  Ti amo (Italiano)
+
+  Te iubesc (Romeno)
+
+  Я тебя люблю (Russo)
+
+  愛してる (Japonês)
+
+  사랑해 (Coreano)
+
+  我爱你 (Chinês)
+
+  Te quiero (Espanhol)
+
+  Eu te amo (Português)
+
+  Ik hou van jou (Holandês)
+
+  J'aime (Francês)
+
+  Te dua (Albanês)
+
+  Aš tave myliu (Lituano)
+
+  Kocham cię (Polonês)
+
+  Jeg elsker deg (Norueguês)
+
+  Jag älskar dig (Sueco)
+
+  Jeg elsker deg (Dinamarquês)
+
+  Szeretlek (Húngaro)
+
+  Σ' αγαπώ (Grego)
+
+  Kocham cię (Polonês)
+
+  Amo-te (Português - Portugal)
+
+  Volim te (Croata)
+
+  T'estimo (Catalão)
+
+  Te volim (Sérvio)
+
+  Ti voglio bene (Italiano - informal)
+
+  S'agapo (Grego - informal)
+
+  Ik hou van je (Holandês - informal)
+
+  Te iubesc (Romeno)
+
+  Kocham Cię (Polonês - informal)
+
+  Tave myliu (Lituano)
+
+  Rakastan sinua (Finlandês)
+
+  Táim i ngrá leat (Irlandês)
+
+  Te volim (Bosníaco)
+
+  Mahal kita (Tagalo)
+
+Ti amo (Italiano)
+
+Seni seviyorum (Turco)
+
+Unë të dua (Albanês)
+
+Ngiyakuthanda (Zulu)
+
+Ninakupenda (Suaíli)
+
+Phom rak khun (Tailandês)
+
+Aloha wau ia 'oe (Havaiano)
+
+Wo ai ni (Chinês)
+
+Mo ni fe (Iorubá)
+
+Mina rakastan sinua (Finlandês)
+
+Ek is lief vir jou (Africâner)
+
+Ég elska þig (Islandês)
+
+Kuv hlub koj (Hmong)
+
+Taim i' ngra leat (Irlandês)
+
+Ani ohev otach (Hebraico)</p>
+</div></div>
+
+
+<!-- CARTAS -->
+<div class="secao"><div class="carta">
+<img src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/0a4c58fba35ad5a9078c831fab5c2c47-removebg-preview--imagetourl.cloud-1774912059230-b2jthb.png" class="gatinhos-topo">
+<h1>Já tá acabando, espera um pouco</h1><p>Bom, astronomia é um tema que eu gosto bastante, então escolhi para ser o tema de fundo da interface. Sabia que existem mais de 100 bilhões de estrelas por galáxia? e aproximadamente 1 trilhão de galáxias no universo observável. Loucura pensar que não somos nem 0,0001% do que existe por aí, acho que não tem algo que eu ache mais bonito(tirando você, claro) do que apagar olhar pro céu a noite e ver as estrelas no céu, me da uma sensasão de infinitude. Quero um dia poder ver o céu junto com você, só nós dois olhando cada uma das estrelas, juntos, imaginando o que deve ter por aí na vastidão do universo. Bom, conversei demais já, espero que tenha gostado do presente, FELIZ DOIS MESES PRA GENTE UHUUUUU🎉🎉🎉, agora aproveita a vista</p>
+</div></div>
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+// 🎵 MÚSICA AUTOMÁTICA
+let player;
+let iniciado = false;
+
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('playerYT',{
+    height:'0',
+    width:'0',
+    videoId:'T6UfG77Bwpo',
+    playerVars:{
+      autoplay:1,
+      controls:0,
+      loop:1,
+      playlist:'T6UfG77Bwpo'
+    },
+    events:{
+      onReady:()=>{ tentarTocar(); }
+    }
+  });
+}
+
+function tentarTocar(){
+  document.addEventListener("click", ()=>{
+    if(!iniciado){
+      player.playVideo();
+      iniciado = true;
+    }
+  });
+}
+
+/* CANVAS */
+const canvas = document.getElementById('galaxy');
+const ctx = canvas.getContext('2d');
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+/* ESTRELAS */
+const estrelas=[];
+for(let i=0;i<250;i++){
+  estrelas.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,t:Math.random()*1.5});
+}
+
+/* NEBULOSA */
+const nebulosas=[];
+for(let i=0;i<15;i++){
+  nebulosas.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    size:Math.random()*300+150,
+    cor:`hsla(${Math.random()*360},100%,70%,0.15)`
+  });
+}
+
+/* BASE F+M */
+const base = [
+  [0,0],[0,60],[0,0],[25,0],[0,30],[20,30],
+  [35,20],[55,20],[45,10],[45,30],
+  [70,60],[70,0],[70,0],[90,30],[90,30],[110,0],[110,0],[110,60]
+];
+
+/* CONSTELAÇÃO PRINCIPAL */
+let constelacao = {
+  x: canvas.width/2 - 60,
+  y: canvas.height/2 - 40,
+  alpha: 0,
+  estado: "aparecendo",
+  tempo: 0,
+  pontos: []
+};
+
+function gerarFixo(){
+  constelacao.pontos = base.map(p=>[
+    p[0] + (Math.random()-0.5)*4,
+    p[1] + (Math.random()-0.5)*4
+  ]);
+}
+gerarFixo();
+
+/* CONSTELAÇÕES ALEATÓRIAS */
+let constelacoesAleatorias = [];
+
+function criarAleatoria(){
+  let pontos = [];
+  let qtd = 4 + Math.floor(Math.random()*4);
+
+  for(let i=0;i<qtd;i++){
+    pontos.push([Math.random()*80, Math.random()*80]);
+  }
+
+  return {
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    alpha: Math.random()*0.5 + 0.3,
+    pontos
+  };
+}
+
+for(let i=0;i<8;i++){
+  constelacoesAleatorias.push(criarAleatoria());
+}
+
+/* ANIMAÇÃO CONSTELAÇÃO */
+function atualizarConstelacao(){
+  constelacao.tempo++;
+
+  if(constelacao.estado==="aparecendo"){
+    constelacao.alpha+=0.02;
+    if(constelacao.alpha>=1){
+      constelacao.estado="visivel";
+      constelacao.tempo=0;
+    }
+  } else if(constelacao.estado==="visivel"){
+    if(constelacao.tempo>300){
+      constelacao.estado="sumindo";
+    }
+  } else {
+    constelacao.alpha-=0.02;
+    if(constelacao.alpha<=0){
+      constelacao.x=Math.random()*(canvas.width-120);
+      constelacao.y=Math.random()*(canvas.height-80);
+      gerarFixo();
+      constelacao.estado="aparecendo";
+    }
+  }
+}
+
+/* DESENHO CONSTELAÇÕES */
+function desenharConstelacoes(){
+
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = "white";
+
+  ctx.strokeStyle=`rgba(255,255,255,${constelacao.alpha})`;
+  ctx.fillStyle=`rgba(255,255,255,${constelacao.alpha})`;
+
+  constelacao.pontos.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(constelacao.x+p[0],constelacao.y+p[1],3,0,Math.PI*2);
+    ctx.fill();
+  });
+
+  for(let i=0;i<constelacao.pontos.length;i+=2){
+    ctx.beginPath();
+    ctx.moveTo(constelacao.x+constelacao.pontos[i][0],constelacao.y+constelacao.pontos[i][1]);
+    ctx.lineTo(constelacao.x+constelacao.pontos[i+1][0],constelacao.y+constelacao.pontos[i+1][1]);
+    ctx.stroke();
+  }
+
+  ctx.shadowBlur = 0;
+
+  constelacoesAleatorias.forEach(c=>{
+    ctx.strokeStyle=`rgba(255,255,255,${c.alpha})`;
+    ctx.fillStyle=`rgba(255,255,255,${c.alpha})`;
+
+    c.pontos.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(c.x+p[0],c.y+p[1],1.8,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    for(let i=0;i<c.pontos.length-1;i++){
+      ctx.beginPath();
+      ctx.moveTo(c.x+c.pontos[i][0],c.y+c.pontos[i][1]);
+      ctx.lineTo(c.x+c.pontos[i+1][0],c.y+c.pontos[i+1][1]);
+      ctx.stroke();
+    }
+  });
+}
+
+/* COMETAS */
+const cometas=[];
+setInterval(()=>{
+  cometas.push({
+    x: Math.random()*canvas.width,
+    y: -50,
+    velX: Math.random()*2 + 2,
+    velY: Math.random()*2 + 2,
+    tamanho: Math.random()*2 + 1.5,
+    vida: 0,
+    maxVida: 80 + Math.random()*40
+  });
+},2000);
+
+/* TELEPORT */
+const teleport=document.querySelector(".teleport");
+setInterval(()=>{
+  teleport.style.opacity=0;
+  setTimeout(()=>{
+    teleport.style.left=Math.random()*innerWidth+"px";
+    teleport.style.top=Math.random()*innerHeight+"px";
+    teleport.style.opacity=1;
+  },400);
+},2500);
+
+/* DRAW */
+function draw(){
+  ctx.fillStyle="black";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  nebulosas.forEach(n=>{
+    let g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.size);
+    g.addColorStop(0,n.cor);
+    g.addColorStop(1,"transparent");
+    ctx.fillStyle=g;
+    ctx.beginPath();
+    ctx.arc(n.x,n.y,n.size,0,Math.PI*2);
+    ctx.fill();
+  });
+
+  estrelas.forEach(e=>{
+    ctx.beginPath();
+    ctx.arc(e.x,e.y,e.t,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+  });
+
+  atualizarConstelacao();
+  desenharConstelacoes();
+
+  cometas.forEach((c,i)=>{
+    c.x += c.velX;
+    c.y += c.velY;
+    c.vida++;
+
+    let alpha = 1 - (c.vida / c.maxVida);
+
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = "white";
+
+    let grad = ctx.createLinearGradient(
+      c.x, c.y,
+      c.x - c.velX*15,
+      c.y - c.velY*15
+    );
+
+    grad.addColorStop(0, `rgba(255,255,255,${alpha})`);
+    grad.addColorStop(1, "transparent");
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = c.tamanho;
+
+    ctx.beginPath();
+    ctx.moveTo(c.x, c.y);
+    ctx.lineTo(c.x - c.velX*15, c.y - c.velY*15);
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+
+    if(c.vida > c.maxVida){
+      cometas.splice(i,1);
+    }
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
