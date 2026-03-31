@@ -189,6 +189,25 @@ canvas {
 
 <body>
 
+.cometa-img {
+  position: fixed;
+  width: 120px;
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0;
+}
+
+.rastro {
+  position: fixed;
+  width: 200px;
+  height: 4px;
+  background: linear-gradient(to right, rgba(255,255,255,0.8), transparent);
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: 14;
+  opacity: 0;
+}
+  
 <canvas id="galaxy"></canvas>
 
 <!-- IMAGEM GIRANDO -->
@@ -612,6 +631,56 @@ function draw(){
   requestAnimationFrame(draw);
 }
 draw();
+
+const cometaImg = document.getElementById("cometa");
+const rastro = document.getElementById("rastro");
+
+function spawnCometaImagem(){
+  let x = Math.random() * window.innerWidth;
+  let y = -100;
+
+  let velX = Math.random() * 3 + 3;
+  let velY = Math.random() * 3 + 3;
+
+  cometaImg.style.left = x + "px";
+  cometaImg.style.top = y + "px";
+  cometaImg.style.opacity = 1;
+
+  let angle = Math.atan2(velY, velX) * 180 / Math.PI;
+  cometaImg.style.transform = `rotate(${angle}deg)`;
+
+  function animar(){
+    x += velX;
+    y += velY;
+
+    cometaImg.style.left = x + "px";
+    cometaImg.style.top = y + "px";
+
+    // rastro
+    rastro.style.left = (x - velX * 20) + "px";
+    rastro.style.top = (y - velY * 20) + "px";
+    rastro.style.opacity = 1;
+    rastro.style.transform = `rotate(${angle}deg)`;
+
+    if(y > window.innerHeight + 100){
+      cometaImg.style.opacity = 0;
+      rastro.style.opacity = 0;
+      return;
+    }
+
+    requestAnimationFrame(animar);
+  }
+
+  animar();
+}
+
+/* aparece aleatoriamente */
+setInterval(() => {
+  if(Math.random() < 0.6){
+    spawnCometaImagem();
+  }
+}, 4000);
+  
 </script>
 
 <!-- GATINHOS DORMINDO -->
@@ -623,6 +692,8 @@ draw();
     <div class="zzz">Z</div>
   </div>
   
+<img id="cometa" class="cometa-img" src="https://pub-141831e61e69445289222976a15b6fb3.r2.dev/Image_to_url_V2/b908d595d0518d952939fc02dd7ec28a-Photoroom-imagetourl.cloud-1774985983892-b3rchn.png">
+<div id="rastro" class="rastro"></div>
   
 </body>
 </html>
