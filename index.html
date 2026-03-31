@@ -41,13 +41,6 @@ canvas {
     animation: dormir 3s infinite ease-in-out;
   }
 
-  /* Animação de respiração */
-  @keyframes dormir {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(4px); }
-    100% { transform: translateY(0px); }
-  }
-
   /* Zzz */
   .zzz {
     position: absolute;
@@ -59,9 +52,6 @@ canvas {
     opacity: 0;
     animation: subirZ 3s infinite;
   }
-
-  .zzz:nth-child(2) { animation-delay: 1s; }
-  .zzz:nth-child(3) { animation-delay: 2s; }
 
   @keyframes subirZ {
     0% {
@@ -82,24 +72,7 @@ canvas {
   <div class="gato-container">
     <img class="gato" src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
     <div class="zzz">Z</div>
-    <div class="zzz">Z</div>
-    <div class="zzz">Z</div>
   </div>
-
-  <div class="gato-container">
-    <img class="gato" src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
-    <div class="zzz">Z</div>
-    <div class="zzz">Z</div>
-    <div class="zzz">Z</div>
-  </div>
-
-  <div class="gato-container">
-    <img class="gato" src="https://cdn-icons-png.flaticon.com/512/616/616408.png">
-    <div class="zzz">Z</div>
-    <div class="zzz">Z</div>
-    <div class="zzz">Z</div>
-  </div>
-</div>
 
 /* IMAGEM GIRANDO */
 .imagem-topo {
